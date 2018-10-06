@@ -1,5 +1,6 @@
 from scrapy import signals
 import random
+import logging
 import scrapy
 from scrapy import log
 import time
@@ -11,15 +12,14 @@ from twisted.internet.error import TimeoutError, DNSLookupError, \
     ConnectionLost, TCPTimedOutError
 from twisted.web.client import ResponseFailed
 from scrapy.core.downloader.handlers.http11 import TunnelError
+from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
 
 
 class ProxyMiddleWare(object):
 
     def __init__(self):
+        self.logger = logging.getLogger(__name__)
         self.proxy_url = 'http://54.255.234.23:8000/random'
-        self.banlist=[]
-        self.isblacked = False
-        self.current_proxy = None
         self.download_timeout = 30
         self.lock = DeferredLock()
         self.RETRY_HTTP_CODES = [302,301,500, 503, 504, 400, 408,403]
@@ -28,41 +28,32 @@ class ProxyMiddleWare(object):
         ConnectionLost, TCPTimedOutError, ResponseFailed, IOError, TunnelError)
 
     def process_request(self, request, spider):
-        if not 'proxy' in request.meta:
-            self.get_random_proxy()
-            request.meta['proxy'] = self.current_proxy
+        # if not 'proxy' in request.meta:
+        proxy = self.get_random_proxy()
+        if proxy:
+            uri = 'https://{proxy}'.format(proxy=proxy)
+            self.logger.debug('使用代理 ' + uri)
+            request.meta['proxy'] = uri
 
     def process_response(self, request, response, spider):
-    #     '''对返回的response处理'''
-    #     # 如果返回的response状态不是200，重新生成当前request对象
         if response.status in self.RETRY_HTTP_CODES  or 'captcha' in response.url:
-            self.get_random_proxy()
-            # print("===============not okay ip changes to:" + self.current_proxy)
-            request.meta['proxy'] = self.current_proxy
-            # print ('==============requesting from response')
+            self.logger.debug('response.status is',response.status)
             return request
         return response
 
 
     def process_exception(self, request,  spider, exception):
         if isinstance(exception, self.EXCEPTIONS_TO_RETRY):
-            print('=============================Got exception: %s' % (exception))
-            self.get_random_proxy()
-            request.meta['proxy'] = self.current_proxy
             return request
 
     def get_random_proxy(self):
-        self.lock.acquire()
-        response = requests.get(self.proxy_url)
-        if response.status_code == 200:
-            self.current_proxy = 'http://' + response.text
-            print ('getting a new proxy:', self.current_proxy)
-            self.lock.release()
-            return self.current_proxy
-        else:
-            print('retrying')
-            time.sleep(12)
-            return self.get_random_proxy()
+        try:
+            response = requests.get(self.proxy_url)
+            if response.status_code == 200:
+                proxy = response.text
+                return proxy
+        except requests.ConnectionError:
+            return False
 
 
     # def get_random_proxy(self):

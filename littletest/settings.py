@@ -27,7 +27,7 @@ ROBOTSTXT_OBEY = False
 # Configure a delay for requests for the same website (default: 0)
 # See https://doc.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
-DOWNLOAD_DELAY = 1.5
+# DOWNLOAD_DELAY = 1.5
 
 # The download delay setting will honor only one of:
 #CONCURRENT_REQUESTS_PER_DOMAIN = 16
@@ -54,9 +54,10 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'littletest.middlewares3.UserAgentMiddleWare': 10,
-    'littletest.middlewares3.ProxyMiddleWare':100,
-    # 'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
+    'littletest.middlewares2.UserAgentMiddleWare': 553,
+    'littletest.middlewares2.ProxyMiddleware':555,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
+    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None
     #'littletest.middlewares2.RandomProxy': 100,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
     # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None
@@ -97,31 +98,15 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-
-# PROXY_URL_TXT = 'D:\\PERSONALS\\littletest\\ip.txt'
-# AUTO_PROXY = {
-#     'download_timeout': 30,
-#     'test_urls': [('https://www.liepin.com', 'online'), ('http://huaban.com', '33010602001878')],
-#     'ban_code': [500, 502, 503, 504],
-# }
-
-
-
-
-# Proxy mode
-# 0 = Every requests have different proxy
-# 1 = Take only one proxy from the list and assign it to every requests
-# 2 = Put a custom proxy to use in the settings
-PROXY_MODE = 2
-CUSTOM_PROXY = 'http://132.232.182.231:5000/random'
-
 PROXY_URL = 'http://54.255.234.23:8000/random'
-
+RETRY_ENABLED = True
+RETRY_TIMES = 200
 RETRY_HTTP_CODES = [302,401, 403, 408, 414, 500, 502, 503, 504]
 
 
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER_PERSIST = True
-REDIS_HOST = '132.232.182.231'
+REDIS_HOST = '54.255.234.23'
 REDIS_PORT = 6379
+REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
