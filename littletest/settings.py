@@ -59,7 +59,7 @@ DOWNLOADER_MIDDLEWARES = {
     'littletest.middlewares2.ProxyMiddleware':555,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
-    'scrapy.downloadermiddleware.cookies.CookiesMiddleware': 553
+    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 553
 
     #'littletest.middlewares2.RandomProxy': 100,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
@@ -104,7 +104,7 @@ ITEM_PIPELINES = {
 PROXY_URL = 'http://54.255.234.23:8000/random'
 RETRY_ENABLED = True
 RETRY_TIMES = 200
-RETRY_HTTP_CODES = [302,401, 403, 408, 414, 500, 502, 503, 504]
+RETRY_HTTP_CODES = [301,302,401, 403, 408, 414, 500, 502, 503, 504]
 
 
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
