@@ -55,11 +55,11 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'littletest.middlewares2.UserAgentMiddleWare': 1,
+    'littletest.middlewares2.UserAgentMiddleWare': 553,
     'littletest.middlewares2.ProxyMiddleware':555,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
-    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 553
+    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
 
     #'littletest.middlewares2.RandomProxy': 100,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
