@@ -55,7 +55,7 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'littletest.middlewares2.UserAgentMiddleWare': 1,
+    'littletest.middlewares2.UserAgentMiddleWare': 543,
     'littletest.middlewares2.ProxyMiddleware':555,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
@@ -75,7 +75,7 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'littletest.pipelines.Pipeline_ToJson': 300,
+    # 'littletest.pipelines.Pipeline_ToJson': 300,
     'scrapy_redis.pipelines.RedisPipeline': 300
     
 }
@@ -110,6 +110,8 @@ RETRY_HTTP_CODES = [301,302,401, 403, 408, 414, 500, 502, 503, 504]
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER_PERSIST = True
+SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.PriorityQueue'
+
 REDIS_HOST = '54.255.234.23'
 REDIS_PORT = 6379
 REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
