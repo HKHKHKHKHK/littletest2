@@ -28,22 +28,31 @@ class ProxyMiddleWare(object):
         ConnectionLost, TCPTimedOutError, ResponseFailed, IOError, TunnelError)
 
     def process_request(self, request, spider):
-        # if not 'proxy' in request.meta:
+        if not 'proxy' in request.meta:
         proxy = self.get_random_proxy()
         if proxy:
             uri = 'https://{proxy}'.format(proxy=proxy)
-            self.logger.debug('使用代理 ' + uri)
+            self.logger.debug('使用代理1 ' + uri)
             request.meta['proxy'] = uri
 
     def process_response(self, request, response, spider):
         if response.status in self.RETRY_HTTP_CODES  or 'captcha' in response.url:
-            self.logger.debug('response.status is',response.status)
-            return request
+            proxy = self.get_random_proxy()
+            if proxy:
+                uri = 'https://{proxy}'.format(proxy=proxy)
+                self.logger.debug('使用代理2 ' + uri)
+                request.meta['proxy'] = uri
+                return request
         return response
 
 
     def process_exception(self, request,  spider, exception):
         if isinstance(exception, self.EXCEPTIONS_TO_RETRY):
+            proxy = self.get_random_proxy()
+            if proxy:
+                uri = 'https://{proxy}'.format(proxy=proxy)
+                self.logger.debug('使用代理2 ' + uri)
+                request.meta['proxy'] = uri
             return request
 
     def get_random_proxy(self):
@@ -54,25 +63,6 @@ class ProxyMiddleWare(object):
                 return proxy
         except requests.ConnectionError:
             return False
-
-
-    # def get_random_proxy(self):
-    #     if not self.current_proxy or self.isblacked:
-    #         self.lock.acquire()
-    #         while 1:
-    #             with open('C:\\Users\\Jason\\Desktop\\ip.txt', 'r') as f:
-    #                 proxies = f.readlines()
-    #             if proxies:
-    #                 break
-    #             else:
-    #                 time.sleep(1)
-    #         self.current_proxy =  "https://" + random.choice(proxies).strip()
-    #         #print("===============using one ip:" + self.current_proxy)
-    #         if self.current_proxy in self.banlist:
-    #             self.get_random_proxy()
-    #         else:
-    #             self.lock.release()
-    #             return self.current_proxy
 
 
 
