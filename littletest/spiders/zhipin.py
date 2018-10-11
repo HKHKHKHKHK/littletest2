@@ -16,7 +16,7 @@ class ZhipinSpider(CrawlSpider):
         #item['job_names'] = response.xpath("//div[@class='job-menu']//li//div[@class='text']//a//text()").extract()
         for page in pages:
             link = 'https://www.zhipin.com' + page
-            yield scrapy.Request(url=link,callback=self.parse_item,dont_filter=True)
+            yield scrapy.Request(url=link,callback=self.parse_item)
 
 
     def parse_item(self, response):
