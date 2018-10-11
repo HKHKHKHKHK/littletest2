@@ -55,9 +55,9 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'littletest.middlewares2.UserAgentMiddleWare': 543,
-    'littletest.middlewares2.ProxyMiddleware':555,
-    'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
+    'littletest.middlewares3.UserAgentMiddleWare': 543,
+    'littletest.middlewares3.ProxyMiddleware':555,
+    'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
     'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 553
 
@@ -105,6 +105,9 @@ PROXY_URL = 'http://54.255.234.23:8000/random'
 RETRY_ENABLED = True
 RETRY_TIMES = 200
 RETRY_HTTP_CODES = [301,302,401, 403, 408, 414, 500, 502, 503, 504]
+
+
+
 
 
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
