@@ -55,18 +55,12 @@ DEFAULT_REQUEST_HEADERS = {
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
-    'littletest.middlewares2.UserAgentMiddleWare': 540,
     'littletest.middlewares2.UserAgentMiddleWare': 543,
     'littletest.middlewares2.ProxyMiddleware':555,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
-<<<<<<< HEAD
-    'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
-=======
-    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 553
-
-    #'littletest.middlewares2.RandomProxy': 100,
->>>>>>> f1a6798106a2d6fb38795088ee2e42ce09775884
+    #'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 545,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None
 }
@@ -118,10 +112,6 @@ SCHEDULER_PERSIST = True
 DUPEFILTER_DEBUG = True
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
-<<<<<<< HEAD
 REDIS_HOST = '54.255.234.23'
 REDIS_PORT = 6379
 REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
-=======
-REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
->>>>>>> f1a6798106a2d6fb38795088ee2e42ce09775884

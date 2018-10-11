@@ -6,7 +6,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from littletest.items import zhiPinItem
 from scrapy_redis.spiders import RedisSpider
 
-class ZhipinSpider(RedisSpider):
+class ZhipinSpider(CrawlSpider):
     name = 'zhipin'
     allowed_domains = ['zhipin.com']
     start_urls = ['https://www.zhipin.com/']
