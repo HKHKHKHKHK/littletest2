@@ -29,11 +29,11 @@ class ProxyMiddleWare(object):
 
     def process_request(self, request, spider):
         if not 'proxy' in request.meta:
-        proxy = self.get_random_proxy()
-        if proxy:
-            uri = 'https://{proxy}'.format(proxy=proxy)
-            self.logger.debug('使用代理1 ' + uri)
-            request.meta['proxy'] = uri
+            proxy = self.get_random_proxy()
+            if proxy:
+                uri = 'https://{proxy}'.format(proxy=proxy)
+                self.logger.debug('使用代理1 ' + uri)
+                request.meta['proxy'] = uri
 
     def process_response(self, request, response, spider):
         if response.status in self.RETRY_HTTP_CODES  or 'captcha' in response.url:
