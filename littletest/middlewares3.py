@@ -42,7 +42,7 @@ class ProxyMiddleWare(object):
                 uri = 'https://{proxy}'.format(proxy=proxy)
                 self.logger.debug('使用代理2 ' + uri)
                 request.meta['proxy'] = uri
-                return request
+            return request
         return response
 
 
