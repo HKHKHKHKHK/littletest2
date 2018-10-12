@@ -42,7 +42,7 @@ class ProxyMiddleWare(object):
                 uri = 'https://{proxy}'.format(proxy=proxy)
                 self.logger.info('使用代理2 ' + uri)
                 request.meta['proxy'] = uri
-                return request
+            return request
         return response
 
 
@@ -53,7 +53,7 @@ class ProxyMiddleWare(object):
                 uri = 'https://{proxy}'.format(proxy=proxy)
                 self.logger.info('使用代理3 ' + uri)
                 request.meta['proxy'] = uri
-                return request
+            return request
 
     def get_random_proxy(self):
         try:
