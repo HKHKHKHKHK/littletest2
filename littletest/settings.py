@@ -113,7 +113,7 @@ RETRY_HTTP_CODES = [301,302,401, 403, 408, 414, 500, 502, 503, 504]
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER_PERSIST = True
-DUPEFILTER_DEBUG = True
+# DUPEFILTER_DEBUG = True
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
 REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
