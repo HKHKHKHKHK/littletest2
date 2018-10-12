@@ -15,7 +15,7 @@ from scrapy.core.downloader.handlers.http11 import TunnelError
 from scrapy.downloadermiddlewares.httpproxy import HttpProxyMiddleware
 
 
-class ProxyMiddleWare(object):
+class ProxyMiddleware(object):
 
     def __init__(self):
         self.logger = logging.getLogger(__name__)
