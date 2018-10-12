@@ -60,7 +60,7 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':550,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
     #'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
-    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 545,
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 800,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None
 }
