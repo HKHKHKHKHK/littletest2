@@ -56,9 +56,9 @@ DEFAULT_REQUEST_HEADERS = {
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
 DOWNLOADER_MIDDLEWARES = {
     'littletest.middlewares3.UserAgentMiddleWare': 543,
-    'littletest.middlewares3.ProxyMiddleWare':555,
+    'littletest.middlewares3.ProxyMiddleWare':990,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
-    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
+    'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':600,
     #'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
     'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 545,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
