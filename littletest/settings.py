@@ -59,11 +59,10 @@ DOWNLOADER_MIDDLEWARES = {
     'littletest.middlewares3.ProxyMiddleWare':555,
     'scrapy.downloadermiddlewares.retry.RetryMiddleware':None,
     'scrapy.downloadermiddlewares.redirect.RedirectMiddleware':None,
-    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 553
-
-    #'littletest.middlewares2.RandomProxy': 100,
+    #'scrapy.contrib.downloadermiddleware.cookies.CookiesMiddleware': 554,
+    'scrapy.downloadermiddlewares.cookies.CookiesMiddleware': 545,
     # 'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': 110,
-    # 'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware':None
 }
 
 # Enable or disable extensions
@@ -113,7 +112,13 @@ RETRY_HTTP_CODES = [301,302,401, 403, 408, 414, 500, 502, 503, 504]
 SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 SCHEDULER_PERSIST = True
+<<<<<<< HEAD
 # DUPEFILTER_DEBUG = True
+=======
+#DUPEFILTER_DEBUG = True
+>>>>>>> 895a240de45cae35ecce4e0ce0657d004d8f62ff
 SCHEDULER_QUEUE_CLASS = 'scrapy_redis.queue.SpiderPriorityQueue'
 
+#REDIS_HOST = '54.255.234.23'
+#REDIS_PORT = 6379
 REDIS_URL = 'redis://root:foobared@54.255.234.23:6379'
